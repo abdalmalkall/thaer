@@ -3,38 +3,25 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Arial', sans-serif;
 }
 
 body {
-  background: linear-gradient(135deg, #1E2A47, #5563DE);
+  background: linear-gradient(135deg, #FF66B2, #66B3FF); /* الزهري والأزرق بشكل سلس */
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px;
   color: #fff;
-  overflow: hidden;
-  perspective: 1000px;
+  animation: bgAnimation 15s ease-in-out infinite alternate; /* إضافة تأثير تغيير الألوان بشكل سلس */
 }
 
-/* تأثير الإضاءة الخلفية */
-body::before {
-  content: "";
-  position: absolute;
-  width: 350px;
-  height: 350px;
-  background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(0,0,0,0) 80%);
-  top: 20%;
-  left: 30%;
-  transform: translate(-50%, -50%);
-  z-index: -1;
-  animation: glowEffect 6s infinite alternate;
-}
-
-@keyframes glowEffect {
-  from { opacity: 0.3; transform: scale(1); }
-  to { opacity: 0.8; transform: scale(1.3); }
+@keyframes bgAnimation {
+  0% { background: linear-gradient(135deg, #FF66B2, #66B3FF); } /* الزهري الفاتح والأزرق الفاتح */
+  33% { background: linear-gradient(135deg, #FF99CC, #3399FF); } /* الزهري المعتدل والأزرق المعتدل */
+  66% { background: linear-gradient(135deg, #FF80BF, #0066CC); } /* الزهري الغامق والأزرق الغامق */
+  100% { background: linear-gradient(135deg, #FF66B2, #66B3FF); } /* العودة إلى البداية */
 }
 
 /* تنسيق الشاشات */
@@ -42,20 +29,19 @@ body::before {
   display: none;
   width: 100%;
   max-width: 500px;
-  background: rgba(0, 0, 0, 0.5);
-  padding: 25px;
-  border-radius: 15px;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 30px;
+  border-radius: 20px;
   text-align: center;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   position: relative;
-  backdrop-filter: blur(15px);
-  transform: rotateX(10deg) rotateY(-10deg);
-  transition: transform 0.5s ease-in-out;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .screen.active {
   display: block;
-  transform: rotateX(0deg) rotateY(0deg);
+  transform: scale(1.05);
+  opacity: 1;
 }
 
 /* تنسيق النماذج والأزرار */
@@ -64,70 +50,176 @@ form input, form button, input[type="number"] {
   padding: 12px;
   margin: 12px auto;
   border: none;
-  border-radius: 12px;
-  font-size: 1rem;
-  transition: all 0.3s ease-in-out;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  transition: box-shadow 0.3s ease;
 }
 
 form button, button {
-  background: linear-gradient(45deg, #ff9800, #ff5722);
+  background: #ff9800;
   color: #fff;
   cursor: pointer;
-  font-weight: bold;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-  border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(255, 87, 34, 0.5);
-  width: 140px;
-  height: 70px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  margin: 20px auto;
+  transition: background 0.3s, box-shadow 0.3s;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 form button:hover, button:hover {
-  background: linear-gradient(45deg, #ff5722, #e91e63);
-  transform: scale(1.05) translateY(-3px);
-  box-shadow: 0 8px 20px rgba(233, 30, 99, 0.6);
+  background: #e68900;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* تنسيق خيارات الجنس (محاذاة صحيحة) */
+.gender {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin: 20px 0;
+  font-size: 1.2rem;
+}
+
+/* تأثير زر "حفظ وإرسال" مع إطار يبدأ بلون واحد ثم يتغير تدريجيًا */
+.animated-button {
+  border: 4px solid #ff0000; /* يبدأ بالإطار الأحمر */
+  animation: borderColorAnimation 5s linear infinite;
+  background-color: #2196f3; /* لون خلفية ثابت */
+  color: #fff;
+  padding: 12px 25px;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  font-weight: bold;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes borderColorAnimation {
+  0% { border-color: #ff0000; }    /* أحمر */
+  33% { border-color: #00ff00; }   /* أخضر */
+  66% { border-color: #0000ff; }   /* أزرق */
+  100% { border-color: #ff0000; }
 }
 
 /* تنسيق البطاقات */
+#cards-container {
+  margin: 30px 0;
+}
+
 .card {
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
+  background: rgba(255, 255, 255, 0.85);
+  color: #000;
   padding: 20px;
-  margin: 12px 0;
-  border-radius: 16px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(8px);
-  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
-  transform: translateZ(20px);
-  transition: transform 0.3s, box-shadow 0.3s;
+  margin: 15px 0;
+  border-radius: 12px;
+  border: 2px solid;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .card:hover {
-  transform: scale(1.05) translateZ(40px);
-  box-shadow: 0 15px 50px rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 /* تأثيرات خاصة بناءً على النوع */
 .card.male {
-  border-color: #007bff;
-  background: linear-gradient(135deg, #0033cc, #00aaff);
-  box-shadow: 0 10px 30px rgba(0, 123, 255, 0.3);
+  border-color: #000;
+  background: #e0e0e0;
 }
 
 .card.female {
-  border-color: #ff4081;
-  background: linear-gradient(135deg, #cc0066, #ff6699);
-  box-shadow: 0 10px 30px rgba(255, 64, 129, 0.3);
+  border-color: #ff69b4;
+  background: #ffe6f2;
 }
 
-/* تحسين توافق التصميم مع الأجهزة الصغيرة */
+/* تنسيق بطاقات الأسئلة في شاشة الاختبار */
+.question-card {
+  background: rgba(255, 255, 255, 0.9);
+  color: #000;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 12px;
+  border: 2px dashed #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* تنسيق زر الرجوع وزر نسخ الرابط في صفحة الاختبار */
+.back-button, .copy-button {
+  position: fixed;
+  top: 20px;
+  padding: 12px 18px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #ff9800;
+  color: #fff;
+  transition: background 0.3s, box-shadow 0.3s;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.back-button {
+  right: 120px;
+}
+
+.copy-button {
+  right: 20px;
+}
+
+.back-button:hover, .copy-button:hover {
+  background: #e68900;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+
+/* تأثير الخلفية الخاصة بالمصممة (إذا كان المستخدم أنثى) */
+body.female-background {
+  background: linear-gradient(180deg, #ffccdd, #ff99bb);
+  animation: femaleBgTransition 10s ease-in-out infinite alternate;
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes femaleBgTransition {
+  from { background: linear-gradient(180deg, #ffccdd, #ff99bb); }
+  to   { background: linear-gradient(180deg, #ff99bb, #ff0066); }
+}
+
+/* تأثير أزهار ثلاثية الأبعاد تظهر من أسفل الصفحة وتتحرك للأعلى */
+body.female-background::before {
+  content: "";
+  position: fixed;
+  bottom: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 220px;
+  height: 220px;
+  background: url('flower.png') no-repeat center/contain; /* تأكد من وجود ملف flower.png في مجلد الصور */
+  animation: flowerRise 8s ease-in-out infinite;
+  opacity: 0.9;
+}
+
+@keyframes flowerRise {
+  0%   { bottom: -100px; opacity: 0; }
+  50%  { bottom: 50%; opacity: 1; }
+  100% { bottom: 100%; opacity: 0; }
+}
+
+/* استجابة التصميم لجميع الأجهزة */
 @media (max-width: 600px) {
+  body {
+    padding: 15px;
+  }
+
   .screen {
-    width: 95%;
+    width: 100%;
     padding: 18px;
+  }
+
+  .card, .question-card {
+    padding: 12px;
+    margin: 8px 0;
+  }
+
+  .animated-button {
+    font-size: 1rem;
   }
 }
