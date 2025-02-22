@@ -109,3 +109,27 @@ document.getElementById("submit-quiz-btn").addEventListener("click", function ()
   alert("تم إنشاء رابط الاختبار الخاص بك. قم بمشاركته مع صديقك.");
   window.open(quizLink, "_blank");
 });
+// Select the gender radio buttons
+const maleRadio = document.querySelector('input[name="gender"][value="male"]');
+const femaleRadio = document.querySelector('input[name="gender"][value="female"]');
+
+// Function to handle gender selection
+function handleGenderSelection() {
+  // Check if the male option is selected
+  if (maleRadio.checked) {
+    document.body.classList.add('male-selected');
+    document.body.classList.remove('female-selected');
+  }
+  // Check if the female option is selected
+  else if (femaleRadio.checked) {
+    document.body.classList.add('female-selected');
+    document.body.classList.remove('male-selected');
+  }
+}
+
+// Add event listeners to update background when selection changes
+maleRadio.addEventListener('change', handleGenderSelection);
+femaleRadio.addEventListener('change', handleGenderSelection);
+
+// Initialize the background based on the initial selection (if any)
+handleGenderSelection();
