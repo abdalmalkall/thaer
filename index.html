@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>موقع معرفة الأصدقاء</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- زر رجوع ثابت يظهر في صفحات الموقع (يختفي في شاشة تسجيل الدخول) -->
+  <button id="index-back-btn" class="back-button" style="display: none;">رجوع</button>
+
+  <!-- شاشة تسجيل الدخول / التسجيل -->
+  <div id="login-screen" class="screen active">
+    <h1>مرحبا بك في موقع معرفة الأصدقاء</h1>
+    <form id="login-form">
+      <input type="text" id="userName" placeholder="الاسم" required>
+      <input type="email" id="userEmail" placeholder="البريد الإلكتروني" required>
+      <div class="gender">
+        <label>
+          <input type="radio" name="gender" value="male" required> ذكر
+        </label>
+        <label>
+          <input type="radio" name="gender" value="female"> أنثى
+        </label>
+      </div>
+      <button type="submit">تسجيل الدخول</button>
+    </form>
+  </div>
+
+  <!-- شاشة التعليمات قبل البدء -->
+  <div id="instructions-screen" class="screen">
+    <h2>تعليمات استخدام الموقع</h2>
+    <p>
+      هذا الموقع يمكنك من تصميم اختبار لمعرفة مدى معرفة صديقك بك. قم بإدخال عدد الأسئلة التي ترغب بها، ثم أدخل السؤال والجواب الصحيح في كل بطاقة. يمكنك اختيار إظهار الإجابات الصحيحة بعد انتهاء الاختبار أو عدم إظهارها. بعد الانتهاء سيتم إنشاء رابط خاص يمكن مشاركته مع صديقك. كما سيتم إرسال النتائج إلى المسؤول عبر البريد: popoytydhdt@gmail.com.
+    </p>
+    <button id="start-quiz-btn">ابدأ تصميم الأسئلة</button>
+  </div>
+
+  <!-- شاشة تحديد عدد الأسئلة -->
+  <div id="quiz-setup-screen" class="screen">
+    <h2>كم عدد الأسئلة التي تريدها؟</h2>
+    <input type="number" id="numQuestions" min="1" placeholder="أدخل عدد الأسئلة" required>
+    <button id="generate-cards-btn">إنشاء البطاقات</button>
+  </div>
+
+  <!-- شاشة تصميم الأسئلة -->
+  <div id="quiz-create-screen" class="screen">
+    <h2>أدخل الأسئلة والإجابات</h2>
+    <div id="cards-container"></div>
+    <div class="option">
+      <label>عرض الإجابات الصحيحة بعد الاختبار؟
+        <select id="showAnswersOption">
+          <option value="yes">نعم</option>
+          <option value="no">لا</option>
+        </select>
+      </label>
+    </div>
+    <button id="submit-quiz-btn" class="animated-button">حفظ وإرسال</button>
+  </div>
+
+  <!-- تضمين ملف الجافا سكريبت الرئيسي -->
+  <script src="script.js"></script>
+</body>
+</html>

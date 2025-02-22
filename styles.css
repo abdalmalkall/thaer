@@ -1,0 +1,133 @@
+/* إعادة تعيين القيم الافتراضية وتحديد الخطوط */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #1E2A47, #5563DE);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  color: #fff;
+  overflow: hidden;
+  perspective: 1000px;
+}
+
+/* تأثير الإضاءة الخلفية */
+body::before {
+  content: "";
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(0,0,0,0) 80%);
+  top: 20%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  animation: glowEffect 6s infinite alternate;
+}
+
+@keyframes glowEffect {
+  from { opacity: 0.3; transform: scale(1); }
+  to { opacity: 0.8; transform: scale(1.3); }
+}
+
+/* تنسيق الشاشات */
+.screen {
+  display: none;
+  width: 100%;
+  max-width: 500px;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 25px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+  position: relative;
+  backdrop-filter: blur(15px);
+  transform: rotateX(10deg) rotateY(-10deg);
+  transition: transform 0.5s ease-in-out;
+}
+
+.screen.active {
+  display: block;
+  transform: rotateX(0deg) rotateY(0deg);
+}
+
+/* تنسيق النماذج والأزرار */
+form input, form button, input[type="number"] {
+  width: 90%;
+  padding: 12px;
+  margin: 12px auto;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s ease-in-out;
+}
+
+form button, button {
+  background: linear-gradient(45deg, #ff9800, #ff5722);
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(255, 87, 34, 0.5);
+  width: 140px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 20px auto;
+}
+
+form button:hover, button:hover {
+  background: linear-gradient(45deg, #ff5722, #e91e63);
+  transform: scale(1.05) translateY(-3px);
+  box-shadow: 0 8px 20px rgba(233, 30, 99, 0.6);
+}
+
+/* تنسيق البطاقات */
+.card {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  padding: 20px;
+  margin: 12px 0;
+  border-radius: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+  transform: translateZ(20px);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05) translateZ(40px);
+  box-shadow: 0 15px 50px rgba(255, 255, 255, 0.3);
+}
+
+/* تأثيرات خاصة بناءً على النوع */
+.card.male {
+  border-color: #007bff;
+  background: linear-gradient(135deg, #0033cc, #00aaff);
+  box-shadow: 0 10px 30px rgba(0, 123, 255, 0.3);
+}
+
+.card.female {
+  border-color: #ff4081;
+  background: linear-gradient(135deg, #cc0066, #ff6699);
+  box-shadow: 0 10px 30px rgba(255, 64, 129, 0.3);
+}
+
+/* تحسين توافق التصميم مع الأجهزة الصغيرة */
+@media (max-width: 600px) {
+  .screen {
+    width: 95%;
+    padding: 18px;
+  }
+}

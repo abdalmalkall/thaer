@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>اختبار الصديق</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- زر رجوع وزر نسخ الرابط على يمين الشاشة -->
+  <button id="back-btn" class="back-button">رجوع</button>
+  <button id="copy-link-btn" class="copy-button">نسخ الرابط</button>
+
+  <!-- شاشة اختبار الصديق -->
+  <div id="quiz-take-screen" class="screen active">
+    <h2>اختبر معرفتك!</h2>
+    <div id="quiz-questions-container"></div>
+    <button id="submit-answers-btn">إرسال الإجابات</button>
+  </div>
+
+  <!-- شاشة عرض النتيجة -->
+  <div id="result-screen" class="screen">
+    <h2>نتيجتك</h2>
+    <div id="result-display"></div>
+    <button id="restart-btn">العودة للصفحة الرئيسية</button>
+  </div>
+
+  <script src="quiz_page.js"></script>
+</body>
+</html>
